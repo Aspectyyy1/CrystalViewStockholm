@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fönsterputs - Få pris direkt</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 700px;
+  margin: 50px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+}
+
+button {
+  width: 35px;
+  height: 35px;
+  border: none;
+  background: #1f7a4a;
+  color: white;
+  font-size: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.count {
+  font-size: 18px;
+  margin: 0 10px;
+  width: 20px;
+  text-align: center;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.cta {
+  width: 100%;
+  padding: 15px;
+  margin-top: 25px;
+  background: #1f7a4a;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.cta:hover {
+  background: #155437;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>Få pris på fönsterputs</h1>
+
+<div class="row">
+<div class="label">Utan spröjs (90 kr)</div>
+<div>
+<button onclick="change('a', -1)">-</button>
+<span class="count" id="a">0</span>
+<button onclick="change('a', 1)">+</button>
+</div>
+</div>
+
+<div class="row">
+<div class="label">Med spröjs (110 kr)</div>
+<div>
+<button onclick="change('b', -1)">-</button>
+<span class="count" id="b">0</span>
+<button onclick="change('b', 1)">+</button>
+</div>
+</div>
+
+<div class="row">
+<div class="label">Överhängda (110 kr)</div>
+<div>
+<button onclick="change('c', -1)">-</button>
+<span class="count" id="c">0</span>
+<button onclick="change('c', 1)">+</button>
+</div>
+</div>
+
+<div class="row">
+<div class="label">Inglasad balkong (400 kr)</div>
+<div>
+<button onclick="change('d', -1)">-</button>
+<span class="count" id="d">0</span>
+<button onclick="change('d', 1)">+</button>
+</div>
+</div>
+
+<div class="row">
+<div class="label">Ovanligt stora (110 kr)</div>
+<div>
+<button onclick="change('e', -1)">-</button>
+<span class="count" id="e">0</span>
+<button onclick="change('e', 1)">+</button>
+</div>
+</div>
+
+<button class="cta" onclick="calculate()">Beräkna mitt pris</button>
+
+</div>
+
+<script>
+function change(id, val) {
+  let el = document.getElementById(id);
+  let current = parseInt(el.innerText);
+  current = Math.max(0, current + val);
+  el.innerText = current;
+}
+
+function calculate() {
+  const data = {
+    a: document.getElementById("a").innerText,
+    b: document.getElementById("b").innerText,
+    c: document.getElementById("c").innerText,
+    d: document.getElementById("d").innerText,
+    e: document.getElementById("e").innerText
+  };
+
+  const query = new URLSearchParams(data).toString();
+  window.location.href = "result.html?" + query;
+}
+</script>
+
+</body>
+</html>
