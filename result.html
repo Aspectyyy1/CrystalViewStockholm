@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ditt pris</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #f4f6f8;
+  margin: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 80px auto;
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.price {
+  font-size: 40px;
+  color: #1f7a4a;
+  font-weight: bold;
+}
+
+.small {
+  color: #666;
+  margin-top: 10px;
+}
+
+.back {
+  margin-top: 30px;
+  display: inline-block;
+  padding: 12px 20px;
+  background: #1f7a4a;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>Ditt pris</h1>
+
+<div class="price" id="price">0 kr</div>
+<div class="small" id="details"></div>
+
+<a class="back" href="index.html">Ändra val</a>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+const a = parseInt(params.get("a")) || 0;
+const b = parseInt(params.get("b")) || 0;
+const c = parseInt(params.get("c")) || 0;
+const d = parseInt(params.get("d")) || 0;
+const e = parseInt(params.get("e")) || 0;
+
+let price =
+(a * 90) +
+(b * 110) +
+(c * 110) +
+(d * 400) +
+(e * 110);
+
+if (price < 950) price = 950;
+
+document.getElementById("price").innerText = price + " kr";
+
+document.getElementById("details").innerText =
+`Utan spröjs: ${a}, Med spröjs: ${b}, Överhängda: ${c}, Balkong: ${d}, Stora: ${e}`;
+</script>
+
+</body>
+</html>
